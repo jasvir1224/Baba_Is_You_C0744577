@@ -26,10 +26,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
    
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        let nodeA = contact.bodyA.node
+        let nodeB = contact.bodyB.node
+        
+        let activeKeyword = childNode(withName: "isblock")
+        if (nodeA!.name == "wall" && (activeKeyword != nil) && nodeB!.name == "stopblock" ) {
+            
+//            self.childNode(withName: "wall")?.physicsBody?.categoryBitMask = 1
+//            self.childNode(withName: "wall")?.physicsBody?.collisionBitMask = 4
+            self.childNode(withName: "wall")?.physicsBody?.isDynamic
+            
+            
+            restartbaba()
+        }
+       
        
     }
     
-    func restartPlayer() {
+    func restartbaba() {
         self.baba.removeFromParent()
         baba.position = CGPoint(x:192, y:-128)
         addChild(baba)
